@@ -13,4 +13,37 @@ include ApplicationHelper
     @invoices = JSON.parse(@invoices, object_class: Invoice)
   end
 
+  def pending_bills
+
+
+    pending_bills = []
+    Invoice.joins(:collections).each do |invoice|
+      if !invoice.blank? and !invoice.collections.blank?
+        # puts :ref, invoice.reference, :amt, invoice.amount + invoice.collections.load.last.amount
+        if invoice.amount.to_i + invoice.collections.load.last.amount.to_i == 0.0
+          pending_bills << invoice
+        end
+      end
+    end
+    @invoices = render_cached_json("pending_list", {expires_in: 5.minutes}) do
+      pending_bills
+    end
+    @invoices = JSON.parse(@invoices, object_class: Invoice)
+  end
+
+  def collected_bills
+    collected_bills = []
+    Invoice.joins(:collections).each do |invoice|
+      if !invoice.blank? and !invoice.collections.blank?
+        if invoice.amount.to_i + invoice.collections.load.last.amount.to_i != 0.0
+          collected_bills << invoice
+        end
+      end
+    end
+    @invoices = render_cached_json("collected_bill_list", {expires_in: 5.minutes}) do
+      collected_bills
+    end
+    @invoices = JSON.parse(@invoices, object_class: Invoice)
+  end
+
 end

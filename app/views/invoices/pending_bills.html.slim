@@ -1,0 +1,34 @@
+.d-flex.justify-content-between.flex-wrap
+  div
+  / = link_to 'New', new_superadmin_discount_path, class: 'btn btn-outline-primary mb-2'
+  div
+/ = link_to superadmin_discounts_path(format: :csv, params: request.query_parameters), class: 'btn btn-outline-primary mr-2' do
+      i.fas.fa-cloud-download-alt.pr-2
+      |Download
+/ = paginate @discounts
+table.table.table-striped.table-hover
+  thead
+    tr
+      th Reference
+      th Invoice Date
+      th Customer
+      th Brand Manager
+      th Narration
+      th Amount
+      th Total Collection
+      th Balance Due
+      th
+
+  tbody
+    - @invoices.each do |invoice|
+      tr
+        td = invoice.reference
+        td = invoice.invoice_date
+        td = invoice.customer_name
+        td = invoice.brand_manager
+        td = invoice.narration
+        td = invoice.amount.to_i
+        td = invoice.collections.load.size
+        td = invoice.collections.load.size > 0 ? invoice.amount.to_i + invoice.collections.load.last.amount.to_i : invoice.amount.to_i
+        td =link_to invoice_collections_path(invoice_id: invoice), class: 'btn btn-info btn-sm', method: :post do
+          |Add Collection

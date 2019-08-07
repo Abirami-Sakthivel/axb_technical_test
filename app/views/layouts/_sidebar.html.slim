@@ -4,10 +4,14 @@
       =link_to invoices_path, class: "nav-link #{active_class('invoices')}" do
         i.fas.fa-list.sidebar-icon
         | Invoices
-    / li.nav-item
-    /   =link_to list_superadmin_shoot_types_path, class: "nav-link #{active_class('shoot_types')}" do
-    /     i.fas.fa-images.sidebar-icon
-    /     | Shoot Types
+    li.nav-item
+      = link_to pending_bills_invoices_path, class: "nav-link #{active_class('pending_bills')}" do
+        i.fas.fa-list.sidebar-icon
+        | Pending Bills
+    li.nav-item
+      = link_to collected_bills_invoices_path, class: "nav-link #{active_class('pending_bills')}" do
+        i.fas.fa-list.sidebar-icon
+        | Collected Bills
     / li.nav-item
     /   = link_to superadmin_equipments_path, class: "nav-link #{active_class('equipments')}" do
     /     i.fas.fa-camera.sidebar-icon
