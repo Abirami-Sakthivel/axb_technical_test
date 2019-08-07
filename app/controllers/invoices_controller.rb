@@ -22,8 +22,9 @@ include ApplicationHelper
     @invoice = Invoice.new(invoice_params)
     @invoice.invoice_date = Time.zone.strptime(params[:invoice][:invoice_date],'%m/%d/%Y') unless params[:invoice][:invoice_date].blank?
     unless @invoice.save
-      flash[:error] = @invoice.errors.full_messages.join(', ')
+      flash.now[:error] = @invoice.errors.full_messages.join(', ')
       render :new
+      return
     end
     redirect_to invoices_path
   end

@@ -16,6 +16,7 @@
 //= require popper
 //= require bootstrap
 //= require turbolinks
+//= require config
 //= require moment
 //= require js.cookie
 //= require bootstrap-datetimepicker

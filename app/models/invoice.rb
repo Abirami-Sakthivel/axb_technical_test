@@ -4,6 +4,8 @@ class Invoice < ApplicationRecord
   after_save :write_cache
   after_create :clear_cache
 
+  validates_uniqueness_of :reference
+
 
   def write_cache
     unless Rails.cache.fetch('invoices_list').blank?
