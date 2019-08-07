@@ -12,7 +12,6 @@ module ApplicationHelper
   def active_class(path)
     return_class = ''
     if path.class == Array
-      puts :true
       if path.any? { |str| request.path.include? str }
         return_class = 'active'
       end
@@ -28,11 +27,8 @@ module ApplicationHelper
       elsif
         (path=='pending_bills' ) and request.path == '/invoices'
         return_class = ''
-      elsif
-      (path=='invoices' )
-        return_class = 'active'
       else
-        (path=='collected_bills' ) and request.path == '/invoices'
+        (path=='collected_bills' or path == 'pending_bills') and request.path == '/invoices'
         return_class = ''
       end
     end
