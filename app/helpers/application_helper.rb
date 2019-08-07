@@ -8,4 +8,18 @@ module ApplicationHelper
       block.call.to_json
     end
   end
+
+  def active_class(path)
+    return_class = ''
+    if path.class == Array
+      if path.any? { |str| request.path.include? str }
+        return_class = 'active'
+      end
+    else
+      if request.path.include?(path)
+        return_class = 'active'
+      end
+    end
+    return_class
+  end
 end

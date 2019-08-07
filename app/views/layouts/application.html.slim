@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title AxbTechnicalTest
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    / = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    #wrap
+      = render 'layouts/navbar'
+      .container-fluid
+        .row
+          nav.col-md-2.d-none.d-md-block.bg-light.sidebar
+            = render 'layouts/sidebar'
+          main.col-md-9.ml-sm-auto.col-lg-10.pt-3.px-4 role="main"
+            #main-content.mb-5
+              = yield

@@ -1,0 +1,18 @@
+.sidebar-sticky
+  ul.nav.flex-column
+    li.nav-item
+      =link_to invoices_path, class: "nav-link #{active_class('invoices')}" do
+        i.fas.fa-list.sidebar-icon
+        | Invoices
+    / li.nav-item
+    /   =link_to list_superadmin_shoot_types_path, class: "nav-link #{active_class('shoot_types')}" do
+    /     i.fas.fa-images.sidebar-icon
+    /     | Shoot Types
+    / li.nav-item
+    /   = link_to superadmin_equipments_path, class: "nav-link #{active_class('equipments')}" do
+    /     i.fas.fa-camera.sidebar-icon
+    /     | Equipments
+    / li.nav-item
+    /   = link_to superadmin_users_path, class: "nav-link #{active_class('users')}" do
+    /     i.fas.fa-users.sidebar-icon
+    /     | Users

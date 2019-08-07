@@ -28,7 +28,7 @@ table.table.table-striped.table-hover
         td = invoice.brand_manager
         td = invoice.narration
         td = invoice.amount.to_i
-        td = invoice.collections.size
-        td = invoice.collections.size > 0 ? invoice.amount.to_i + invoice.collections.last.amount.to_i : invoice.amount.to_i
-        td =link_to invoice_collections_path(invoice_id: invoice), class: 'btn btn-info', method: :post do
+        td = invoice.collections.load.size
+        td = invoice.collections.load.size > 0 ? invoice.amount.to_i + invoice.collections.load.last.amount.to_i : invoice.amount.to_i
+        td =link_to invoice_collections_path(invoice_id: invoice), class: 'btn btn-info btn-sm', method: :post do
           |Add Collection
