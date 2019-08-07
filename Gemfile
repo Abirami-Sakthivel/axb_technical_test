@@ -23,6 +23,9 @@ gem 'data-confirm-modal'
 gem 'rest-client'
 gem 'slim'
 gem 'redis-rails'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+gem 'browser-timezone-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

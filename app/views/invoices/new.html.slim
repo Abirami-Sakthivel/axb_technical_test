@@ -1,0 +1,17 @@
+.row
+  .col-3.offset-4
+    = form_with model: [@invoice], class: 'form', local: true do |f|
+      .form-group.form-label-group
+        = f.text_field :reference, autofocus: true, class: 'form-control', placeholder: 'reference', required: true
+      .form-group.form-label-group
+        = f.text_field :customer_name, autofocus: true, class: 'form-control', placeholder: 'customer_name', maxlength: 64
+      .form-group.form-label-group
+        = f.text_field :brand_manager, autofocus: true, class: 'form-control', placeholder: 'brand_manager', maxlength: 64
+      .form-group.form-label-group
+        = f.text_area :narration, autofocus: true, class: 'form-control', placeholder: 'narration', maxlength: 64
+      .form-group.form-label-group
+        = f.number_field :amount, class: 'form-control', placeholder: 'amount', min: 0, step: 0.01, required: true
+      .form-group.form-label-group
+        = f.text_field :invoice_date,value: formatted_datetime(@invoice.invoice_date),class: 'datetimepicker form-control date', placeholder: 'invoice_date', required: true
+      = f.submit :submit, class: 'btn btn-primary btn-block text-uppercase semi-bold'
+      =link_to 'Cancel', :back, class: 'btn btn-light btn-block text-uppercase semi-bold'

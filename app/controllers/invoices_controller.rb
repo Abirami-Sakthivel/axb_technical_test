@@ -13,9 +13,22 @@ include ApplicationHelper
     @invoices = JSON.parse(@invoices, object_class: Invoice)
   end
 
+
+  def new
+    @invoice = Invoice.new
+  end
+
+  def create
+    @invoice = Invoice.new(invoice_params)
+    @invoice.invoice_date = Time.zone.strptime(params[:invoice][:invoice_date],'%m/%d/%Y') unless params[:invoice][:invoice_date].blank?
+    unless @invoice.save
+      flash[:error] = @invoice.errors.full_messages.join(', ')
+      render :new
+    end
+    redirect_to invoices_path
+  end
+
   def pending_bills
-
-
     pending_bills = []
     Invoice.joins(:collections).each do |invoice|
       if !invoice.blank? and !invoice.collections.blank?
@@ -46,4 +59,9 @@ include ApplicationHelper
     @invoices = JSON.parse(@invoices, object_class: Invoice)
   end
 
+  private
+
+  def invoice_params
+    params.require(:invoice).permit(:brand_manager, :customer_name, :amount, :reference, :narration)
+  end
 end
