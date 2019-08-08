@@ -1,3 +1,4 @@
+require 'redis-rails'
 class Invoice < ApplicationRecord
   has_many :collections
 
