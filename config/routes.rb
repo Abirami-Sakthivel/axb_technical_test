@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :invoices do
     collection do
+      post :import
       get :pending_bills
       get :collected_bills
     end

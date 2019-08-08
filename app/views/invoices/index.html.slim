@@ -2,10 +2,9 @@
   div
     = link_to 'New', new_invoice_path, class: 'btn btn-outline-primary mb-2'
   div
-    / = link_to superadmin_discounts_path(format: :csv, params: request.query_parameters), class: 'btn btn-outline-primary mr-2' do
+    = link_to import_invoices_path, method: :post, class: 'btn btn-outline-primary mr-2' do
       i.fas.fa-cloud-download-alt.pr-2
-      |Download
-  / = paginate @discounts
+      |Import Invoice
 table.table.table-responsive.table-striped.table-hover
   thead
     tr
@@ -22,7 +21,9 @@ table.table.table-responsive.table-striped.table-hover
   tbody
     - @invoices.each do |invoice|
       tr
-        td = invoice.reference
+        td
+          = link_to invoice.reference, invoice_path(invoice)
+
         td = invoice.invoice_date
         td = invoice.customer_name
         td = invoice.brand_manager
