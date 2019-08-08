@@ -3,7 +3,6 @@ class Invoice < ApplicationRecord
   has_many :collections
 
   after_save :write_cache
-  after_create :clear_cache
 
   validates_uniqueness_of :reference
 
