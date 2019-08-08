@@ -1,11 +1,3 @@
-.d-flex.justify-content-between.flex-wrap
-  div
-  / = link_to 'New', new_superadmin_discount_path, class: 'btn btn-outline-primary mb-2'
-  div
-/ = link_to superadmin_discounts_path(format: :csv, params: request.query_parameters), class: 'btn btn-outline-primary mr-2' do
-      i.fas.fa-cloud-download-alt.pr-2
-      |Download
-/ = paginate @discounts
 table.table.table-striped.table-hover
   thead
     tr
