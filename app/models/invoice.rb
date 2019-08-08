@@ -16,7 +16,7 @@ class Invoice < ApplicationRecord
 
   end
 
-  def clear_cache
-    Rails.cache.redis.del('invoices_list')
-  end
+  # def clear_cache
+  #   Rails.cache.redis.del('invoices_list')
+  # end
 end
